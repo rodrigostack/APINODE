@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const connection = require('./database/conexao')
+const mensagem = require('./database/Mensagem')
 
 connection
     .authenticate()
