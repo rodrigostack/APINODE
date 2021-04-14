@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express()
+const bodyparser = require('body-parser')
 const connection = require('./database/conexao')
-const mensagem = require('./database/Mensagem')
+const Mensagem = require('./database/Mensagem')
 
 connection
     .authenticate()
@@ -12,8 +13,24 @@ connection
         console.log(msgErro);
     })
 
+ app.use(bodyparser.urlencoded({extended: false}));
+ app.use(bodyparser.json());
+
+
 app.get('/', function(req,res){
     res.send('<html><body><h1>Olá API</h1></body></html>')
+})
+
+app.post('/api', (req, res)=>{
+    const nome = req.body.nome;
+    const email = req.body.email;
+    const descricao = req.body.descricao;
+
+    Mensagem.create({
+        nome: nome,
+        email: email,
+        descricao: descricao
+    })
 })
 
 app.listen(3001, () => {

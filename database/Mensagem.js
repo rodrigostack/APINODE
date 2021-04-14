@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 const connection = require('./conexao');
-const conncetion = require('./conexao');
 
 const Mensagem = connection.define('mensagem',{
     id:{
