@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const bodyparser = require('body-parser')
+const cors = require('cors')
 const connection = require('./database/conexao')
 const Mensagem = require('./database/Mensagem')
 
@@ -13,6 +14,8 @@ connection
         console.log(msgErro);
     })
 
+ app.use(cors()); 
+ app.use(express.json());      
  app.use(bodyparser.urlencoded({extended: false}));
  app.use(bodyparser.json());
 
