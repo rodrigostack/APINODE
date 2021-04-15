@@ -27,3 +27,5 @@ const Mensagem = connection.define('mensagem',{
 
 Mensagem.sync({force: false}).then(() =>{});
 
+module.exports = Mensagem;
+
